@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const targetDate = new Date('2025-11-29T07:00:00').getTime();
@@ -32,6 +33,31 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'sectors', 'agenda', 'news', 'contact', 'register'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="font-sans text-slate-800 bg-slate-50 min-h-screen">
       {/* Header */}
@@ -47,12 +73,12 @@ export default function Home() {
             </div> */}
           </div>
           <nav className="hidden lg:flex items-center space-x-6">
-            <a href="#home" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Trang chủ</a>
-            <a href="#about" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Về Long Bình</a>
-            <a href="#sectors" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Hoạt động</a>
-            <a href="#agenda" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Chương trình</a>
-            <a href="#news" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Tin tức</a>
-            <a href="#contact" className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 focus:outline-none focus:text-green-600 focus:underline">Liên hệ</a>
+            <a href="#home" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'home' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Trang chủ</a>
+            <a href="#about" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'about' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Về Long Bình</a>
+            <a href="#sectors" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'sectors' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Hoạt động</a>
+            <a href="#agenda" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'agenda' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Chương trình</a>
+            <a href="#news" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'news' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Tin tức</a>
+            <a href="#contact" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'contact' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Liên hệ</a>
             <a href="#register" className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-green-500/30 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
               Đăng Ký Tham Dự
             </a>
@@ -83,42 +109,42 @@ export default function Home() {
           <nav className="container mx-auto px-4 pb-4 pt-2 flex flex-col space-y-3 bg-white border-t">
             <a 
               href="#home" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'home' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Trang chủ
             </a>
             <a 
               href="#about" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'about' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Về Long Bình
             </a>
             <a 
               href="#sectors" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'sectors' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Hoạt động
             </a>
             <a 
               href="#agenda" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'agenda' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Chương trình
             </a>
             <a 
               href="#news" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'news' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Tin tức
             </a>
             <a 
               href="#contact" 
-              className="text-sm font-semibold hover:text-green-500 transition-colors text-slate-600 py-2 px-4 rounded-lg hover:bg-slate-50"
+              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'contact' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Liên hệ
