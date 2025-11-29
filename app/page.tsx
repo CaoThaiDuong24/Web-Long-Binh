@@ -646,7 +646,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="mb-20 text-center">
+          {/* <div className="mb-20 text-center">
             <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-8">Đối tác đồng hành</p>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
               <div className="text-xl md:text-2xl font-black text-white hover:text-green-400 cursor-default">Vietcombank</div>
@@ -655,7 +655,7 @@ export default function Home() {
               <div className="text-xl md:text-2xl font-black text-white hover:text-green-400 cursor-default">Suoi Tien Group</div>
               <div className="text-xl md:text-2xl font-black text-white hover:text-green-400 cursor-default">Tan Cang Logistics</div>
             </div>
-          </div>
+          </div> */}
           <div className="grid md:grid-cols-2 gap-16 items-center bg-white/5 p-8 md:p-12 rounded-3xl border border-white/10 backdrop-blur-sm">
             <div>
               <h2 className="text-3xl md:text-4xl font-black mb-6">Đăng Ký Tham Dự Đại Hội</h2>
