@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -60,105 +61,7 @@ export default function Home() {
 
   return (
     <div className="font-sans text-slate-800 bg-slate-50 min-h-screen">
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 transition-all duration-300 bg-white shadow-md py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <img src="/images/logo LBBA.png" alt="LBBA Logo" className="h-12 md:h-14 w-auto" />
-            {/* <div className="flex flex-col text-slate-800">
-              <span className="font-bold text-lg leading-none tracking-tight">LBBA</span>
-              <span className="text-[10px] md:text-xs font-medium opacity-90 uppercase tracking-wide">
-                Hội Doanh Nghiệp P. Long Bình
-              </span>
-            </div> */}
-          </div>
-          <nav className="hidden lg:flex items-center space-x-6">
-            <a href="#home" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'home' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Trang chủ</a>
-            <a href="#about" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'about' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Về Long Bình</a>
-            <a href="#sectors" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'sectors' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Hoạt động</a>
-            <a href="#agenda" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'agenda' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Chương trình</a>
-            <a href="#news" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'news' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Tin tức</a>
-            <a href="#contact" className={`text-sm font-semibold hover:text-green-500 transition-colors focus:outline-none ${activeSection === 'contact' ? 'text-green-600 border-b-2 border-green-600' : 'text-slate-600'}`}>Liên hệ</a>
-            <a href="#register" className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-green-500/30 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-              Đăng Ký Tham Dự
-            </a>
-          </nav>
-          <button 
-            className="lg:hidden text-slate-800 p-2 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6 6 18"></path>
-                <path d="m6 6 12 12"></path>
-              </svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 12h16"></path>
-                <path d="M4 18h16"></path>
-                <path d="M4 6h16"></path>
-              </svg>
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`lg:hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <nav className="container mx-auto px-4 pb-4 pt-2 flex flex-col space-y-3 bg-white border-t">
-            <a 
-              href="#home" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'home' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Trang chủ
-            </a>
-            <a 
-              href="#about" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'about' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Về Long Bình
-            </a>
-            <a 
-              href="#sectors" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'sectors' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Hoạt động
-            </a>
-            <a 
-              href="#agenda" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'agenda' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Chương trình
-            </a>
-            <a 
-              href="#news" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'news' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Tin tức
-            </a>
-            <a 
-              href="#contact" 
-              className={`text-sm font-semibold hover:text-green-500 transition-colors py-2 px-4 rounded-lg hover:bg-slate-50 ${activeSection === 'contact' ? 'text-green-600 bg-green-50 border-l-4 border-green-600' : 'text-slate-600'}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Liên hệ
-            </a>
-            <a 
-              href="#register" 
-              className="px-5 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full font-bold text-sm shadow-lg hover:shadow-green-500/30 transition-all text-center"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Đăng Ký Tham Dự
-            </a>
-          </nav>
-        </div>
-      </header>
+      <Header activeSection={activeSection} isHomePage={true} />
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center pt-32 pb-16 overflow-hidden">
@@ -562,6 +465,31 @@ export default function Home() {
             </a>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
+            <a href="/news/dai-hoi-hoi-lbba" className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group cursor-pointer border border-slate-100 block">
+              <div className="h-48 overflow-hidden relative">
+                <img src="/images/imagenew/z7277788004234_bdc7dcb6d1f29e14f45ca2deb899d9d5.jpg" alt="Đại Hội Hội LBBA" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" style={{imageRendering: 'crisp-edges', filter: 'contrast(1.05) saturate(1.1) brightness(1.02)'}} />
+                <div className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Sự kiện</div>
+              </div>
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                    <path d="M3 10h18"></path>
+                  </svg> 29/11/2025
+                </div>
+                <h3 className="font-bold text-lg text-slate-900 mb-3 line-clamp-2 group-hover:text-green-600 transition-colors">Đại hội Hội Doanh nghiệp phường Long Bình lần thứ I, nhiệm kỳ 2025 – 2030</h3>
+                <p className="text-slate-500 text-sm line-clamp-3 mb-4 leading-relaxed">Sự kiện quan trọng của Hội Doanh Nghiệp Phường Long Bình với sự tham gia đông đảo của các doanh nghiệp trên địa bàn.</p>
+                <span className="flex items-center gap-1 text-xs font-bold text-green-600 uppercase">
+                  Đọc tiếp 
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M7 7h10v10"></path>
+                    <path d="M7 17 17 7"></path>
+                  </svg>
+                </span>
+              </div>
+            </a>
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group cursor-pointer border border-slate-100">
               <div className="h-48 overflow-hidden relative">
                 <img src="/images/IMG_7701.jpg" alt="Doanh nghiệp Long Bình chung tay vì an sinh xã hội" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" style={{imageRendering: 'crisp-edges', filter: 'contrast(1.05) saturate(1.1) brightness(1.02)'}} />
@@ -612,7 +540,7 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group cursor-pointer border border-slate-100">
+            {/* <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all group cursor-pointer border border-slate-100">
               <div className="h-48 overflow-hidden relative">
                 <img src="/images/THANH_VIEN_DU_AN_ISO.jpg" alt="Gặp gỡ Cafe Doanh Nhân: Kết nối cung cầu cuối năm" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" style={{imageRendering: 'crisp-edges', filter: 'contrast(1.05) saturate(1.1) brightness(1.02)'}} />
                 <div className="absolute top-4 left-4 bg-green-600 text-white text-xs font-bold px-3 py-1 rounded-full">Kết nối</div>
@@ -636,7 +564,7 @@ export default function Home() {
                   </svg>
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -735,100 +663,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="bg-slate-950 text-white pt-16 pb-8 border-t border-slate-900">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <img src="/images/logo LBBA.png" alt="LBBA Logo" className="h-12 w-auto" />
-                
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                Đảng ủy - HĐND - UBND - UB MTTQ Việt Nam<br />
-                Phường Long Bình, TP. Hồ Chí Minh.
-              </p>
-              <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-green-600 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-                    <path d="M2 12h20"></path>
-                  </svg>
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-green-600 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
-                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg mb-6 text-green-500">Ban Tiếp Đón</h4>
-              <ul className="space-y-4 text-sm text-slate-300">
-                <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10 hover:border-green-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-500 shrink-0">
-                    <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-                  </svg>
-                  <div>
-                    <p className="font-bold">Ms. Phạm Thị Yến Nhi</p>
-                    <p className="text-slate-400">0912 116 668</p>
-                  </div>
-                </li>
-                <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/10 hover:border-green-500 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-500 shrink-0">
-                    <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-                  </svg>
-                  <div>
-                    <p className="font-bold">Ms. Trần Thị Thuý Hiền</p>
-                    <p className="text-slate-400">0978 727 438</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg mb-6 text-green-500">Địa Chỉ & Bản Đồ</h4>
-              <ul className="space-y-4 text-sm text-slate-300">
-                <li className="flex items-start gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-green-500 shrink-0 mt-0.5">
-                    <path d="M10 18v-7"></path>
-                    <path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z"></path>
-                    <path d="M14 18v-7"></path>
-                    <path d="M18 18v-7"></path>
-                    <path d="M3 22h18"></path>
-                    <path d="M6 18v-7"></path>
-                  </svg>
-                  <div>
-                    <span className="font-bold block text-white">Đại Hội: UBND P. Long Bình</span>
-                    <span>325 Nguyễn Văn Tăng, P. Long Bình, TP. Thủ Đức</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-yellow-500 shrink-0 mt-0.5">
-                    <path d="M5.8 11.3 2 22l10.7-3.79"></path>
-                    <path d="M4 3h.01"></path>
-                    <path d="M22 8h.01"></path>
-                    <path d="M15 2h.01"></path>
-                    <path d="M22 20h.01"></path>
-                    <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"></path>
-                    <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"></path>
-                    <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"></path>
-                    <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"></path>
-                  </svg>
-                  <div>
-                    <span className="font-bold block text-white">Gala: Hoa Viên Cúc Linh</span>
-                    <span>41 Đường Số 16, P. Long Bình, TP. Thủ Đức</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-slate-900 pt-8 text-center text-xs text-slate-600">
-            <p>© 2025 Hội Doanh Nghiệp Phường Long Bình. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
