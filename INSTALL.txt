@@ -1,0 +1,73 @@
+═══════════════════════════════════════════════════════
+  HƯỚNG DẪN CÀI ĐẶT NODE.JS VÀ CHẠY NEXT.JS PROJECT
+═══════════════════════════════════════════════════════
+
+BƯỚC 1: TẢI VÀ CÀI ĐẶT NODE.JS
+--------------------------------
+1. Mở trình duyệt và truy cập:
+   https://nodejs.org/
+
+2. Tải bản LTS (Long Term Support) - khuyến nghị
+   Hoặc tải trực tiếp:
+   https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi
+
+3. Chạy file .msi vừa tải về
+
+4. Làm theo hướng dẫn cài đặt:
+   ✓ Accept license
+   ✓ Chọn "Automatically install necessary tools" 
+   ✓ Click Next > Next > Install
+
+5. Khởi động lại PowerShell/Terminal
+
+
+BƯỚC 2: KIỂM TRA CÀI ĐẶT
+-------------------------
+Mở PowerShell mới và chạy:
+
+  node --version
+  npm --version
+
+Nếu hiển thị số version (vd: v20.10.0) là thành công!
+
+
+BƯỚC 3: CÀI ĐẶT DEPENDENCIES
+-----------------------------
+  cd "d:\Web Long Bình\lbba-nextjs"
+  npm install
+
+Chờ khoảng 2-3 phút để tải các packages.
+
+
+BƯỚC 4: CHẠY DEVELOPMENT SERVER
+--------------------------------
+  npm run dev
+
+Sau đó mở trình duyệt và truy cập:
+  http://localhost:3000
+
+
+CÁC LỆNH KHÁC
+-------------
+• Build production:     npm run build
+• Start production:     npm start  
+• Stop server:          Ctrl + C
+
+
+GIẢI QUYẾT LỖI
+--------------
+Nếu gặp lỗi "npm not recognized":
+→ Khởi động lại PowerShell/Terminal
+→ Hoặc khởi động lại máy tính
+
+Nếu npm install lỗi:
+→ Xóa folder node_modules
+→ Chạy lại: npm install
+
+
+HỖ TRỢ
+------
+Website: LBBA - Hội Doanh Nghiệp Phường Long Bình
+Event: Đại Hội Thành Lập - 29.11.2025
+
+═══════════════════════════════════════════════════════
